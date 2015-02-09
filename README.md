@@ -38,3 +38,5 @@ To obtain a video sample at a specific time within the movie:
 CMTime sampleTime = <...>
 MICMSampleBuffer *buffer = [sampleAccessor sampleBufferAtTime:time];
 ```
+
+I am [@CocoaKevin](https://twitter.com/CocoaKevin) on twitter and welcome feedback.
