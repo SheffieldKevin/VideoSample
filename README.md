@@ -13,7 +13,7 @@ I needed a video frame accessor not too dissimilar to QuickTime's next interesti
 
 Objects of this class should be accessed atomically. I achieve this in my own use by managing objects of this class as private members of objects of another class and use a gcd serial queue to manage access.
 
-The simples case for creating a frame accessor assuming you want to access frames from the start of the movie, and that you want to composite all video tracks and that you want to create CGImage RGB objects which are appropriate for the runtime platform (iOS, OSX).
+The simplest case for creating a frame accessor assuming you want to access frames from the start of the movie, and that you want to composite all video tracks and that you want to create CGImage RGB objects which are appropriate for the runtime platform (iOS, OSX).
 
 ```objectivec
 AVURLAsset *videoAsset = <...>
