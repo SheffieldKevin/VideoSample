@@ -19,7 +19,7 @@ The simples case for creating a frame accessor assuming you want to access frame
 AVURLAsset *videoAsset = <...>
 
 MIMovieVideoSampleAccessor *sampleAccessor;
-sampleAccessor = [MIMovieVideoSampleAccessor alloc]  initWithMovie:videoAsset
+sampleAccessor = [[MIMovieVideoSampleAccessor alloc]  initWithMovie:videoAsset
                                                    firstSampleTime:kCMTimeZero
                                                             tracks:nil
                                                      videoSettings:nil
