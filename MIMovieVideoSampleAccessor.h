@@ -1,7 +1,6 @@
 //  MIMovieVideoSampleAccessor.h
 //  MovieMaker
 //
-//  Created by Kevin Meaney on 02/01/2015.
 //  Copyright (c) 2015 Kevin Meaney. All rights reserved.
 
 @import Foundation;
@@ -13,8 +12,7 @@
  @brief A class for accessing frames from 1 or more video tracks of a movie.
  @discussion This class allows for random access of video frames but performance
  is much better if samples are requested in time order and frame times are not
- too far apart. You can also use iterate through each sample using next sample 
- buffer.
+ too far apart. You can also iterate through each sample using the next sample.
 */
 @interface MIMovieVideoSampleAccessor : NSObject
 

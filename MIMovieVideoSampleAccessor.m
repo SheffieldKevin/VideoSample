@@ -1,7 +1,6 @@
 //  MIMovieVideoSampleAccessor.m
 //  MovieMaker
 //
-//  Created by Kevin Meaney on 02/01/2015.
 //  Copyright (c) 2015 Kevin Meaney. All rights reserved.
 
 #import "MIMovieVideoSampleAccessor.h"
@@ -300,27 +299,31 @@ NSDictionary *DefaultVideoSettings()
 
 -(MICMSampleBuffer *)sampleBufferAtTime:(CMTime)time
 {
-    self.currentBuffer = nil;
+    // self.currentBuffer = nil;
     if (CMTIME_IS_INVALID(time))
     {
+        self.currentBuffer = nil;
         return nil;
     }
 
     // We have no use for a negative time.
     if (CMTimeCompare(time, kCMTimeZero) == -1)
     {
+        self.currentBuffer = nil;
         return nil;
     }
 
     // If we don't have enough info to create a new reader then bail.
     if (self.isBroken)
     {
+        self.currentBuffer = nil;
         return nil;
     }
 
     // We have no use for a time after the end of the movie.
     if (CMTimeCompare(time, self._movie.duration) == 1)
     {
+        self.currentBuffer = nil;
         return nil;
     }
 
@@ -371,8 +374,8 @@ NSDictionary *DefaultVideoSettings()
     }
     
     // In case the current sample buffer is the one we want, return it.
-    if (self.isReady && CMTimeCompare(time, self.currentTime) == 0 &&
-        self.currentBuffer)
+    
+    if (self.isReady && steps == 0 && self.currentBuffer)
     {
         return self.currentBuffer;
     }
@@ -383,15 +386,12 @@ NSDictionary *DefaultVideoSettings()
         return nil;
     }
 
-    // If current time is greater or equal to desired then we've got it.
-    // Greater than or equal to is the same as not less than.
-    // If current time is not less than time requested then we've got it. Return.
-    if (!(CMTimeCompare(self.currentTime, time) == -1))
+    if (steps == 1)
     {
         return buffer;
     }
 
-    CMTime frameDuration = CMTimeMakeWithSeconds(self._frameDuration, 9000);
+    CMTime frameDuration = CMTimeMakeWithSeconds(self._frameDuration, 36000);
 
     // The plan is to iterate through max twice the number of estimated steps
     // and then break when we find the first sample which is at the same time
@@ -416,9 +416,9 @@ NSDictionary *DefaultVideoSettings()
             }
         }
 
-        // If current time is equal to or after time then return the buffer.
-        // greater than or equal to is the same as not less than.
-        if (!(CMTimeCompare(self.currentTime, time) == -1))
+        // If current time + frame duration is after the time then return buffer.
+        CMTime temp = CMTimeAdd(self.currentTime, frameDuration);
+        if (CMTimeCompare(temp, time) == 1)
         {
             return newBuf;
         }

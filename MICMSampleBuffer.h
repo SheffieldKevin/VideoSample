@@ -1,7 +1,6 @@
 //  MICMSampleBuffer.h
 //  MovieMaker
 //
-//  Created by Kevin Meaney on 02/01/2015.
 //  Copyright (c) 2015 Kevin Meaney. All rights reserved.
 
 @import Foundation;
