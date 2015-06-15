@@ -1,7 +1,7 @@
 //  MIMovieVideoSampleAccessor.m
 //  MovieMaker
 //
-//  Copyright (c) 2015 Kevin Meaney. All rights reserved.
+//  Copyright (c) 2015 Zukini Ltd. All rights reserved.
 
 #import "MIMovieVideoSampleAccessor.h"
 #import "MICMSampleBuffer.h"
